@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Reservas de canchas online</title>
+
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<script src ="js/jquery.min.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/estilos.css">
+	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+
+
+
+</head>
+<body >
+	<header >
+
+		<div class = "cabecera">
+
+			<div id="contenedor-alert" class="container">
+  		
+			</div>	
+			<div id = "menu-registro" class="registro" >
+	
+				<button type ="button" class = "btn btn-link link" data-toggle="modal" data-target = "#ventana-inicio">
+					<strong>Iniciar Sesion</strong>
+				</button>
+				<button type ="button" class = "btn btn-link link" data-toggle="modal" data-target = "#ventana-registrarse">
+					<strong>Registrarse</strong>
+				</button>		
+			</div>
+
+			<div class="titular">
+				<h1>elNombre.com</h1>
+				<h2>Reservas de canchas online</h2>
+				
+			</div>
+	</header>
+	<div class="cuerpo" id ="cuerpo">
+
+	<div class = "formulario-busqueda container-fluid row" id="busqueda">
+		<h3 class ="text-center">Encuentra tu cancha:</h3>
+		<form method = "post" class = "container form-inline" role = "form">
+			<div class="borde-busqueda form-group has-success has-feedback">
+				 <i class="fa fa-calendar fa-lg"></i><label class = "control-label" for = "fecha" >Fecha: </label>
+				<input class = "form-control" type="date" name="date" id="fecha" autocomplete ="off"/>
+			</div>
+			<div class="borde-busqueda form-group has-success has-feedback">
+				<i class="fa fa-clock-o fa-lg"></i><label class = "control-label" for = "hora" >Hora: </label>
+				<select class="form-control" id = "hora" >
+  					
+				</select> 
+				<div id="opciones"></div>
+			</div>
+			<div class="borde-busqueda form-group has-success has-feedback">
+				<i class="fa fa-futbol-o fa-lg"></i><label class = "control-label" for = "deportes"> Elige un deporte : </label>
+				<select class="form-control" id = "deportes">
+					<option >futbol 5</option>
+					<option >futbol 6</option>
+				</select> 
+			</div>
+			<div class="form-group has-success has-feedback">
+				<button id="btnBuscar" type="button" class="btn btn-warning btn-lg"><i class="fa fa-search"></i>Buscar</button>
+			</div>
+		</form>
+	</div>	
+		<div id="central" class ="text-center container">
+			<img src="imagenes/imagenes1.jpg"/>
+			<img src="imagenes/imagenes2.jpg"/>
+			<img src="imagenes/imagenes3.jpg"/>
+			<img src="imagenes/imagenes4.jpg"/>
+		</div>
+	</div>
+ 				<!-- Ventana Emergente para registrar el usuario-->
+		<div class="modal fade" id = "ventana-registrarse" tabindex = "-1" role = "dialog" aria-lableledby= "myModalLabel" aria-hidden = "true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type = "button" class = "close" data-dismiss="modal" aria-hidden="true" id ="cerrar-registro" onclick = "vaciarFormRegistro();">&times</button>
+						<h4>Registrarse como usuario</h4>
+					</div>
+					<div class="modal-body">
+
+						<form  id= "form-registro" method ="post" class="form-registro form-horizontal">
+							<div class="fila">
+		                        <span class="etiqueta"><label for="nombre">Nombre:</label></span>
+		                        <span class="form-el"><input class="form-control" id="frNombre" name="frNombre" type="text" onfocus = "document.getElementById('mensaje-nombre').innerHTML ='';"  />
+										<span id = "mensaje-nombre" class="mensaje-error"></span>
+		                        </span>
+		                    </div>
+		                    <div class="fila">
+		                        <span class="etiqueta"><label for="apellido">Apellido:</label></span>
+		                        <span class="form-el"><input class="form-control" id="frApellido" name="frApellido" type="text" onfocus = "document.getElementById('mensaje-apellido').innerHTML ='';" />
+									<span id = "mensaje-apellido" class="mensaje-error"></span>
+		                        </span>
+		                    </div>
+		                    <div class="fila">
+		                        <span class="etiqueta"><label for="email">E-Mail:</label></span>
+		                        <span class="form-el"><input class="form-control" id="frEmail" name="frEmail" placeholder ="nombre@dominio.com" type="email" onfocus = "document.getElementById('mensaje-email').innerHTML ='';" />
+									<span id = "mensaje-email" class="mensaje-error"></span>
+		                        </span>
+		                    </div>
+		                    <div class="fila">
+		                        <span class="etiqueta"><label for="contrasenia">Contraseña:</label></span>
+		                        <span class="form-el"><input class="form-control" id="frContrasenia" name="frContrasenia" type="password" onfocus = "document.getElementById('mensaje-contrasenia').innerHTML ='';" />
+									<span id = "mensaje-contrasenia" class="mensaje-error"></span>
+		                        </span>
+		                    </div>
+		                    <div class="fila"> 
+		                        <span class="etiqueta"><label for="contrasenia2">Repetir Contraseña:</label></span>        
+		                        <span class="form-el"><input class="form-control" id="frContrasenia2" name="frContrasenia2" type="password" onfocus = "document.getElementById('mensaje-contrasenia2').innerHTML ='';" />
+									<span id = "mensaje-contrasenia2" class="mensaje-error"></span>
+		                        </span>
+		                    </div>
+		                    <div class="fila"> 
+		                        <span class="etiqueta"><label for="celular">Celular:</label></span>        
+		                        	<span class="form-el"><input class="form-control" id="frTelefono" name="frTelefono" type="tel" onfocus = "document.getElementById('mensaje-telefono').innerHTML ='';" />
+									<span id = "mensaje-telefono" class="mensaje-error"></span>
+		                        </span>
+		                    </div>
+							<div class="fila">
+								<input id  = "btnRegistrarse" class = "btn btn-primary" name="frBoton" type="button" value="Registrarse" />
+							</div>		                 
+							<div class="fila">
+								<input class = "resetear" id = "reset-registro" type = "reset" value = "" />
+							</div>	
+
+						</form>
+					</div>
+					<div class="modal-footer">
+						
+						<button type ="button" class = "close btn btn-link" data-dismiss="modal" data-toggle="modal" data-target = "#ventana-inicio">¿Ya estas registrado?</button>
+					</div>
+				</div>
+			</div>
+		</div> 
+						<!-- Ventana Emergente para iniciar sesion-->
+		<div class="modal fade" id = "ventana-inicio" tabindex = "-1" role = "dialog" aria-lableledby= "myModalLabel" aria-hidden = "true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type = "button" class = "close" data-dismiss="modal" aria-hidden="true" id = "cerrar-inicio" onclick = "vaciarFormInicio();">&times</button>
+						<h4>Iniciar Sesion</h4>
+					</div>
+					<div id = "modal-body" class="modal-body">
+						
+						<form  method ="post" class="form-registro form-horizontal" id = "form-inicio">
+		                    <div class="fila">
+		                        <span class="etiqueta"><label for="inicioEmail">E-Mail:</label></span>
+		                        <span class="form-el"><input class="form-control" id="inicioEmail" name="inicioEmail" placeholder ="nombre@dominio.com" type="email" required onfocus = "document.getElementById('inicio-mensaje-email').innerHTML ='';document.getElementById('inicio-mensaje-error').innerHTML ='';"  />
+									<span id = "inicio-mensaje-email" class="mensaje-error"></span>
+		                        </span>
+		                        
+		                    </div>
+		                    <div class="fila">
+		                        <span class="etiqueta"><label for="inicioContrasenia">Contraseña:</label></span>
+		                        <span class="form-el"><input class="form-control" id="inicioContrasenia" name="inicioContrasenia" type="password" onfocus = "document.getElementById('inicio-mensaje-contrasenia').innerHTML ='';document.getElementById('inicio-mensaje-error').innerHTML ='';" />
+									<span id = "inicio-mensaje-contrasenia" class="mensaje-error"></span>
+		                        </span>
+		                        
+		                    </div>
+							<div class="fila ">
+								<input id ="btnIncio" class = "btn btn-primary" name="frBoton" type="button" value="Inicio"/>
+							</div>
+								<span id = "inicio-mensaje-error" class="mensaje-error ocultar"></span>
+		                    <div class="fila">
+								<input id = "reset-inicio" type = "reset" value = "" class = "resetear"/>
+							</div>	
+		
+
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type ="button" class = "close btn btn-link" data-dismiss="modal" data-toggle="modal" data-target = "#ventana-registrarse">¿No tienes una cuenta?</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		
+
+
+ 	<script src = "js/selector.js"></script>
+	<script src ="js/jquery.min.js"></script>
+	<script src ="js/bootstrap.min.js"></script>	
+	<script type="text/javascript" src = "js/sha1.js"></script>
+	<script type="text/javascript" src = "js/iniciarSesionJquery.js"></script>
+	<script type="text/javascript" src = "js/funcionesAjax.js"></script>
+	<script type="text/javascript" src = "js/registrarJquery.js"></script>
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>
+	<script type="text/javascript" src = "js/cargar.js"></script>
+	<script type="text/javascript" src = "js/busqueda.js"></script>
+
+</body>
+</html>
